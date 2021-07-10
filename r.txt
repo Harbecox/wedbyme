@@ -1,0 +1,48 @@
++--------+-----------+--------------------------------------------------+-----------------------------+-----------------------------------------------------------+------------+
+| Domain | Method    | URI                                              | Name                        | Action                                                    | Middleware |
++--------+-----------+--------------------------------------------------+-----------------------------+-----------------------------------------------------------+------------+
+|        | GET|HEAD  | api/admin/companies                              | companies.index             | App\Http\Controllers\Admin\AdminCompanyController@index   | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | POST      | api/admin/companies                              | companies.store             | App\Http\Controllers\Admin\AdminCompanyController@store   | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/companies/create                       | companies.create            | App\Http\Controllers\Admin\AdminCompanyController@create  | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/companies/{company}                    | companies.show              | App\Http\Controllers\Admin\AdminCompanyController@show    | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | PUT|PATCH | api/admin/companies/{company}                    | companies.update            | App\Http\Controllers\Admin\AdminCompanyController@update  | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | DELETE    | api/admin/companies/{company}                    | companies.destroy           | App\Http\Controllers\Admin\AdminCompanyController@destroy | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/companies/{company}/edit               | companies.edit              | App\Http\Controllers\Admin\AdminCompanyController@edit    | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/company/{company_id}/halls             | halls.index                 | App\Http\Controllers\Admin\AdminHallController@index      | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | POST      | api/admin/company/{company_id}/halls             | halls.store                 | App\Http\Controllers\Admin\AdminHallController@store      | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/company/{company_id}/halls/create      | halls.create                | App\Http\Controllers\Admin\AdminHallController@create     | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/company/{company_id}/halls/{hall}      | halls.show                  | App\Http\Controllers\Admin\AdminHallController@show       | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | PUT|PATCH | api/admin/company/{company_id}/halls/{hall}      | halls.update                | App\Http\Controllers\Admin\AdminHallController@update     | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | DELETE    | api/admin/company/{company_id}/halls/{hall}      | halls.destroy               | App\Http\Controllers\Admin\AdminHallController@destroy    | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | GET|HEAD  | api/admin/company/{company_id}/halls/{hall}/edit | halls.edit                  | App\Http\Controllers\Admin\AdminHallController@edit       | api        |
+|        |           |                                                  |                             |                                                           | auth:api   |
+|        |           |                                                  |                             |                                                           | admin      |
+|        | POST      | api/auth/login                                   | generated::8lY4xloIPdKHIbLK | App\Http\Controllers\Auth\LoginController@login           | api        |
+|        | GET|HEAD  | api/auth/unauthorized                            | unauthorized                | App\Http\Controllers\Auth\LoginController@unauthorized    | api        |
++--------+-----------+--------------------------------------------------+-----------------------------+-----------------------------------------------------------+------------+
