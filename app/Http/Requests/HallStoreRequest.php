@@ -32,6 +32,8 @@ class HallStoreRequest extends ApiRequest
             "address" => "required",
             "region" => "required",
             "review" => "required|numeric|between:0,5",
+            "title" => "required",
+            "seo_url" => "required",
         ];
     }
 

@@ -30,6 +30,7 @@ class CompanyStoreRequest extends ApiRequest
             "email" => "required|email|unique:users",
             "password" => "required|min:8",
             "title" => "required",
+            "seo_url" => "required",
             "role"  => Rule::in(User::ROLES),
         ];
     }

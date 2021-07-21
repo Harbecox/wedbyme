@@ -24,14 +24,15 @@ class UserFactory extends Factory
     public function definition()
     {
         $logos = Storage::disk("public")->files("test_data/logo");
-
+        $title = $this->faker->company;
         return [
             'email' => $this->faker->unique()->safeEmail(),
             'password' => 'password',
             'phone' => "+374".$this->faker->numberBetween(10000000,99999999),
-            "title" => $this->faker->company,
+            "title" => $title,
             "logo" => $this->faker->randomElement($logos),
             "about" => $this->faker->realText(2000),
+            "seo_url" => Str::slug($title)
         ];
     }
 

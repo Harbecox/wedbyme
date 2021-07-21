@@ -49,8 +49,13 @@ class BaseRepository implements RepositoryInterface
 
         foreach ($options as $key => $option){
             if($this->checkColumn($key)){
-                $query = $query->where($key,$option);
-                $count_query = $count_query->where($key,$option);
+                if($this->checkSearchable($key)){
+                    $query = $query->where($key,"LIKE",'%'.$option.'%');
+                    $count_query = $count_query->where($key,"LIKE",'%'.$option.'%');
+                }else{
+                    $query = $query->where($key,$option);
+                    $count_query = $count_query->where($key,$option);
+                }
             }
         }
 
@@ -82,5 +87,12 @@ class BaseRepository implements RepositoryInterface
 
     private function checkColumn($col){
         return \Schema::hasColumn(app($this->model)->getTable(),$col) ? true : abort(422,$col." Not found");
+    }
+
+    private function checkSearchable($col){
+        if(!defined($this->model."::searchable")){
+            return false;
+        }
+        return in_array($col,$this->model::searchable);
     }
 }

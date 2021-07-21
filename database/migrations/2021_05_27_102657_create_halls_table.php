@@ -25,7 +25,9 @@ class CreateHallsTable extends Migration
             $table->json("coords");
             $table->json("phones");
             $table->string("address");
+            $table->string("title");
             $table->string("region");
+            $table->string("seo_url")->nullable();
             $table->float("review");
             $table->unsignedBigInteger("calendar_id")->nullable()->index();
             $table->foreign('calendar_id')

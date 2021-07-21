@@ -3,10 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Hall;
-use App\Models\HallAttribute;
-use App\Models\HallTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class HallFactory extends Factory
 {
@@ -30,13 +29,16 @@ class HallFactory extends Factory
         }
         $images = collect(Storage::disk("public")->files('test_data/foto'));
         $images = $images->random($this->faker->numberBetween(1,$images->count()));
+        $title = $this->faker->company;
         return [
-            "images" => $images,
-            "coords" => [40 + $this->faker->randomFloat(5,-0.5,0.5),44 + $this->faker->randomFloat(5,-0.5,0.5)],
-            "phones" => $phones,
-            "review" => $this->faker->randomFloat(1,3,5),
-            "address" => $this->faker->address,
-            "region" => $this->faker->jobTitle
+            "title"     => $title,
+            "seo_url"   => Str::slug($title),
+            "images"    => $images,
+            "coords"    => [40 + $this->faker->randomFloat(5,-0.5,0.5),44 + $this->faker->randomFloat(5,-0.5,0.5)],
+            "phones"    => $phones,
+            "review"    => $this->faker->randomFloat(1,3,5),
+            "address"   => $this->faker->address,
+            "region"    => $this->faker->jobTitle
         ];
     }
 }

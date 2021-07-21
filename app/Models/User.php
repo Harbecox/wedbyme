@@ -36,7 +36,14 @@ class User extends Authenticatable implements JWTSubject
         "phone",
         "about",
         "logo",
-        "role"
+        "role",
+        "seo_url"
+    ];
+
+    const searchable = [
+        'title',
+        'phone',
+        'email'
     ];
 
     protected $hidden = [

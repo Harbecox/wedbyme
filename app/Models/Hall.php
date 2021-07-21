@@ -37,6 +37,14 @@ class Hall extends Model
         "review",
         "region",
         "calendar_id",
+        "seo_url",
+        "title"
+    ];
+
+    const searchable = [
+        'title',
+        'phone',
+        'email'
     ];
 
     function calendar(){

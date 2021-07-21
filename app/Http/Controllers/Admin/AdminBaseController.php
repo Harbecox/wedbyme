@@ -29,6 +29,10 @@ class AdminBaseController extends Controller
         return $this->response($items);
     }
 
+    public function find(Request $request){
+        return $this->response($request->all());
+    }
+
     public function store(Request $request)
     {
         $this->validation(__FUNCTION__);
