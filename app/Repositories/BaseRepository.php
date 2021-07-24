@@ -27,10 +27,9 @@ class BaseRepository implements RepositoryInterface
     function getAll($options)
     {
         $query = $this->model::query();
-        $limit = null;
+
         if (isset($options['limit']) && is_numeric($options['limit'])) {
             $query = $query->limit($options['limit']);
-            $limit = intval($options['limit']);
         }
         if (isset($options['offset']) && is_numeric($options['offset'])) {
             $query = $query->offset($options['offset']);
@@ -61,11 +60,9 @@ class BaseRepository implements RepositoryInterface
             }
         }
 
-        $count = $count_query->count();
-
         return [
             'items' => $this->resource::collection($query->get()),
-            'count' => $limit ? ($count > $limit ? $limit : $count) : $count,
+            'count' => $count_query->count(),
         ];
     }
 

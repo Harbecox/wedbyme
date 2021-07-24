@@ -44,7 +44,9 @@ class Hall extends Model
     const searchable = [
         'title',
         'phone',
-        'email'
+        'email',
+        'title',
+        'seo_url'
     ];
 
     function calendar(){
