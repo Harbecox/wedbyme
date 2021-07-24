@@ -22,6 +22,8 @@ class HallResource extends JsonResource
             'review' => $this->review,
             'phones' => $this->phones,
             'images' => $this->images,
+            'title'  => $this->title,
+            'seo_url' => $this->seo_url,
             'calendar' => CalendarResource::make($this->calendar),
             'filters' => HallFilterResource::collection($this->filters)
         ];
