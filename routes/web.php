@@ -13,9 +13,9 @@ Route::middleware('auth:api')->group(function (){
     Route::post("upload",function (Request $request){
         if($request->hasFile("image")){
             $image = \Illuminate\Support\Facades\Storage::disk("images")->put("",$request->file("image"));
-            return response()->json(['status' => true,'response' => $image]);
+            return response()->json($image);
         }else{
-            return response()->json(['status' => false,'response' => Null]);
+            return response()->json(false,422);
         }
     });
     Route::prefix('admin')->middleware('admin')->group(function (){
