@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class FilterItem extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
 
     protected $fillable = [
         'title',
         'group_id',
         'position',
-        'value',
     ];
 
     function filter_group(){

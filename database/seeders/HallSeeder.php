@@ -27,7 +27,11 @@ class HallSeeder extends Seeder
                 $hall->calendar->days()->saveMany(CalendarDay::factory()->count(rand(3,10))->make());
                 foreach ($filters as $filter){
                     if($filter->type == "checkbox"){
-                        $items = $filter->items->random(rand(1,3));
+                        if($filter->id == 4){
+                            $items = $filter->items->skip(rand(0,2))->take(rand(1,3));
+                        }else{
+                            $items = $filter->items->random(rand(1,3));
+                        }
                         foreach ($items as $item){
                             $hall->filters()->create(['filter_id' => $item->id]);
                         }

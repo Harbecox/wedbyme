@@ -23,8 +23,6 @@ class CreateFilterItemsTable extends Migration
                 ->onUpdate("cascade");
             $table->integer("position")->nullable()->default(0);
             $table->string("title");
-            $table->string("value")->nullable();
-            $table->timestamps();
         });
     }
 

@@ -8,23 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class FilterGroup extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
-    const TYPES = ['checkbox','radio','input','range','select'];
+    const TYPES = ['checkbox','radio','select'];
+
+    const TYPE_CHECKBOX = "checkbox";
+    const TYPE_RADIO = "radio";
+    const TYPE_SELECT = "select";
 
     protected $fillable = [
         'title',
         'position',
         'type',
-        'options'
+        'name'
     ];
-
-    function getOptionAttribute(){
-        return json_decode($this->options,true);
-    }
-
-    function setOptionAttribute($value){
-        $this->attributes['options'] = json_encode($value,256);
-    }
 
     function items(){
         return $this->hasMany(FilterItem::class,"group_id","id");

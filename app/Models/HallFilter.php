@@ -9,10 +9,12 @@ class HallFilter extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    public $incrementing = null;
+
     protected $fillable = [
         "hall_id",
         "filter_id",
-        "value",
     ];
 
     function filter(){

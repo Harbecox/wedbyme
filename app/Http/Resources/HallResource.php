@@ -18,14 +18,14 @@ class HallResource extends JsonResource
             'id' => $this->id,
             'coords' => $this->coords,
             'address' => $this->address,
-            'region' => $this->region,
             'review' => $this->review,
             'phones' => $this->phones,
             'images' => $this->images,
             'title'  => $this->title,
             'seo_url' => $this->seo_url,
             'calendar' => CalendarResource::make($this->calendar),
-            'filters' => HallFilterResource::collection($this->filters)
+            'filters' => HallFilterResource::collection($this->filters),
+            'company' => $this->whenLoaded("company",CompanyResource::make($this->company))
         ];
     }
 }

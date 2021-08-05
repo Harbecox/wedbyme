@@ -28,3 +28,9 @@ Route::middleware('auth:api')->group(function (){
         Route::resource("calendar_day",\App\Http\Controllers\Admin\AdminCalendarDayController::class);
     });
 });
+
+Route::prefix("halls")->group(function (){
+    Route::get("filters",[\App\Http\Controllers\Front\HallController::class,"filters"]);
+    Route::post("/",[App\Http\Controllers\Front\HallController::class,"index"]);
+    Route::get("/{seo_url}",[App\Http\Controllers\Front\HallController::class,"show"]);
+});

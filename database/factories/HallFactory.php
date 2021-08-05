@@ -38,7 +38,6 @@ class HallFactory extends Factory
             "phones"    => $phones,
             "review"    => $this->faker->randomFloat(1,3,5),
             "address"   => $this->faker->address,
-            "region"    => $this->faker->jobTitle
         ];
     }
 }

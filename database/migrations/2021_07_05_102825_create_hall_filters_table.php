@@ -14,7 +14,6 @@ class CreateHallFiltersTable extends Migration
     public function up()
     {
         Schema::create('hall_filters', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger("hall_id")->index();
             $table->foreign('hall_id')
                 ->references('id')
@@ -27,8 +26,6 @@ class CreateHallFiltersTable extends Migration
                 ->on('filter_items')
                 ->onDelete("cascade")
                 ->onUpdate("cascade");
-            $table->string("value")->nullable();
-            $table->timestamps();
         });
     }
 

@@ -15,10 +15,8 @@ class HallFilterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
             "filter_id" => $this->filter_id,
             "filter_group_id" => $this->filter->filter_group->id,
-            "value" => $this->value,
             "filter" => [
                 "title" => $this->filter->title,
                 "value" => $this->filter->value,

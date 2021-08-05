@@ -18,8 +18,7 @@ class CreateFilterGroupsTable extends Migration
             $table->string("title");
             $table->integer("position")->nullable()->default(0);
             $table->enum("type",\App\Models\FilterGroup::TYPES);
-            $table->json("options")->nullable();
-            $table->timestamps();
+            $table->string("name")->nullable();
         });
     }
 

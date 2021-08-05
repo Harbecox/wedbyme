@@ -35,7 +35,6 @@ class Hall extends Model
         "phones",
         "address",
         "review",
-        "region",
         "calendar_id",
         "seo_url",
         "title"
@@ -84,6 +83,10 @@ class Hall extends Model
 
     function setPhonesAttribute($arr){
         $this->attributes['phones'] = json_encode($arr,256);
+    }
+
+    function company(){
+        return $this->belongsTo(User::class,"company_id","id");
     }
 
 }
