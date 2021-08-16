@@ -52,6 +52,10 @@ class Hall extends Model
         "review" => 'float'
     ];
 
+    function getReviewAttribute($value){
+        return round($value,1);
+    }
+
     function calendar(){
         return $this->hasOne(Calendar::class,"id","calendar_id")->with("days");
     }
