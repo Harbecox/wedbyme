@@ -49,12 +49,8 @@ class Hall extends Model
     ];
 
     protected $casts = [
-        "review" => 'float'
+        "review" => 'float:2'
     ];
-
-    function getReviewAttribute($value){
-        return round(floatval($value),1);
-    }
 
     function calendar(){
         return $this->hasOne(Calendar::class,"id","calendar_id")->with("days");
