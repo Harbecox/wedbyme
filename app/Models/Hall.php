@@ -48,6 +48,10 @@ class Hall extends Model
         'seo_url'
     ];
 
+    protected $casts = [
+        "review" => 'float'
+    ];
+
     function calendar(){
         return $this->hasOne(Calendar::class,"id","calendar_id")->with("days");
     }
