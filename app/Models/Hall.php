@@ -53,7 +53,7 @@ class Hall extends Model
     ];
 
     function getReviewAttribute($value){
-        return round($value,1);
+        return round(floatval($value),1);
     }
 
     function calendar(){
