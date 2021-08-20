@@ -13,7 +13,7 @@ Route::middleware('auth:api')->group(function (){
     Route::post("upload",function (Request $request){
         if($request->hasFile("image")){
             $image = \Illuminate\Support\Facades\Storage::disk("images")->put("",$request->file("image"));
-            return response()->json($image);
+            return response()->json(URL::to("public/images/".$image));
         }else{
             return response()->json(false,422);
         }
