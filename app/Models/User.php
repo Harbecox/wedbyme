@@ -72,7 +72,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     function getUrlsAttribute($value){
-        return json_decode($value,true);
+        return json_decode($value,true)  ?? array();
     }
 
     function setUrlsAttribute($arr){
