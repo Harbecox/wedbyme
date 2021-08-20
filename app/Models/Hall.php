@@ -98,6 +98,10 @@ class Hall extends Model
         $this->attributes['phones'] = json_encode($arr,256);
     }
 
+    function getReviewAttribute($value){
+        return round($value,2);
+    }
+
     function company(){
         return $this->belongsTo(User::class,"company_id","id");
     }
