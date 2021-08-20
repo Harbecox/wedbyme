@@ -99,7 +99,7 @@ class Hall extends Model
     }
 
     function getReviewAttribute($value){
-        return intval(floatval($value) * 10) / 10;
+        return intval($value);
     }
 
     function company(){
