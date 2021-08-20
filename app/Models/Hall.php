@@ -99,7 +99,7 @@ class Hall extends Model
     }
 
     function getReviewAttribute($value){
-        return round($value,2);
+        return null;
     }
 
     function company(){
