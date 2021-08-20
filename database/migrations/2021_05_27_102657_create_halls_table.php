@@ -21,7 +21,8 @@ class CreateHallsTable extends Migration
                 ->on('users')
                 ->onDelete("cascade")
                 ->onUpdate("cascade");
-            $table->json("images");
+            $table->json("images")->nullable();
+            $table->json("urls")->nullable();
             $table->json("coords");
             $table->json("phones");
             $table->string("address");

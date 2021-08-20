@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string("seo_url")->nullable();
             $table->string('password');
             $table->string("title");
+            $table->json("urls")->nullable();
             $table->string("logo")->nullable();
             $table->longText("about")->nullable();
             $table->enum("role",\App\Models\User::ROLES)->default(\App\Models\User::ROLE_COMPANY);

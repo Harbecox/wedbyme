@@ -37,7 +37,8 @@ class User extends Authenticatable implements JWTSubject
         "about",
         "logo",
         "role",
-        "seo_url"
+        "seo_url",
+        "urls"
     ];
 
     const searchable = [
@@ -68,6 +69,14 @@ class User extends Authenticatable implements JWTSubject
 
     function getLogoAttribute($value){
         return $value ? URL::to("public/images/".$value) : null;
+    }
+
+    function getUrlsAttribute($value){
+        return json_decode($value,true);
+    }
+
+    function setUrlsAttribute($arr){
+        $this->attributes['images'] = json_encode($arr,256);
     }
 
     public function getJWTIdentifier()

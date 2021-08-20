@@ -37,7 +37,8 @@ class Hall extends Model
         "review",
         "calendar_id",
         "seo_url",
-        "title"
+        "title",
+        "urls"
     ];
 
     const searchable = [
@@ -49,7 +50,7 @@ class Hall extends Model
     ];
 
     protected $casts = [
-        "review" => 'float:2'
+        "review" => 'float'
     ];
 
     function calendar(){
@@ -67,6 +68,14 @@ class Hall extends Model
     }
 
     function setImagesAttribute($arr){
+        $this->attributes['urls'] = json_encode($arr,256);
+    }
+
+    function getUrlsAttribute($value){
+        return json_decode($value,true);
+    }
+
+    function setUrlsAttribute($arr){
         $this->attributes['images'] = json_encode($arr,256);
     }
 

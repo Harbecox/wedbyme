@@ -31,8 +31,8 @@ class HallController extends Controller
                     $query = $query->where("filter_id",$filter_ids);
                 }
             }
-            echo $query->toSql();
-            exit;
+//            echo $query->toSql();
+//            exit;
             $hall_ids = $query->get()->map(function (HallFilter $hallFilter){
                 return $hallFilter->hall_id;
             });
