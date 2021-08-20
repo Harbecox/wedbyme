@@ -76,7 +76,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     function setUrlsAttribute($arr){
-        $this->attributes['images'] = json_encode($arr,256);
+        $this->attributes['urls'] = json_encode($arr,256);
     }
 
     public function getJWTIdentifier()

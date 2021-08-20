@@ -68,7 +68,7 @@ class Hall extends Model
     }
 
     function setImagesAttribute($arr){
-        $this->attributes['urls'] = json_encode($arr,256);
+        $this->attributes['images'] = json_encode($arr,256);
     }
 
     function getUrlsAttribute($value){
@@ -76,7 +76,7 @@ class Hall extends Model
     }
 
     function setUrlsAttribute($arr){
-        $this->attributes['images'] = json_encode($arr,256);
+        $this->attributes['urls'] = json_encode($arr,256);
     }
 
     function getCoordsAttribute($value){
