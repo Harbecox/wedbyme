@@ -23,6 +23,7 @@ class CompanyResource extends JsonResource
             'logo' => $this->logo,
             'about' => $this->about,
             'role' => $this->role,
+            'urls' => $this->urls,
             'created_at' => $this->created_at,
             'halls' => HallResource::collection($this->whenLoaded('halls'))
         ];
