@@ -63,7 +63,7 @@ class Hall extends Model
 
     function getImagesAttribute($value){
         return collect(json_decode($value,true))->map(function ($image){
-            return URL::to("public/images/".$image);
+            return URL::to("image/".$image);
         });
     }
 

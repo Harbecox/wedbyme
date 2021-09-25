@@ -9,15 +9,14 @@ Route::prefix("auth")->group(function (){
         ->name('unauthorized');
 });
 
+Route::prefix("image")->group(function (){
+    Route::get("{image}",[\App\Http\Controllers\ImageController::class,"get"]);
+    Route::post("upload",[\App\Http\Controllers\ImageController::class,"upload"]);
+});
+
+
 Route::middleware('auth:api')->group(function (){
-    Route::post("upload",function (Request $request){
-        if($request->hasFile("image")){
-            $image = \Illuminate\Support\Facades\Storage::disk("images")->put("",$request->file("image"));
-            return response()->json(URL::to("public/images/".$image));
-        }else{
-            return response()->json(false,422);
-        }
-    });
+
     Route::prefix('admin')->middleware('admin')->group(function (){
         Route::resource("company",\App\Http\Controllers\Admin\AdminCompanyController::class);
         Route::resource("hall",\App\Http\Controllers\Admin\AdminHallController::class);
