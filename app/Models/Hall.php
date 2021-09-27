@@ -46,7 +46,6 @@ class Hall extends Model
         'title',
         'phone',
         'email',
-        'title',
         'seo_url'
     ];
 

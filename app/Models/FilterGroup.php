@@ -16,6 +16,10 @@ class FilterGroup extends Model
     const TYPE_RADIO = "radio";
     const TYPE_SELECT = "select";
 
+    protected $casts = [
+        "position" => "integer"
+    ];
+
     protected $fillable = [
         'title',
         'position',

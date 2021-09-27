@@ -17,6 +17,10 @@ class FilterItem extends Model
         'position',
     ];
 
+    protected $casts = [
+        "position" => "integer"
+    ];
+
     function filter_group(){
         return $this->belongsTo(FilterGroup::class,"group_id","id");
     }
