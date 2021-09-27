@@ -23,7 +23,7 @@ class HallController extends Controller
         if ($request->has('filter_id')) {
             $filters = $request->get('filter_id');
             foreach ($filters as $group_id => $filter_ids) {
-                if ($filter_groups_types[$group_id] == FilterGroup::TYPE_CHECKBOX) {
+                if ($filter_groups_types[$group_id] == FilterGroup::TYPE_CHECKBOX || $filter_groups_types[$group_id] == FilterGroup::TYPE_RANGE) {
                     $query = $query->where(function ($q) use ($filter_ids) {
                         foreach ($filter_ids as $id){
                             $q->orWhere("filter_id",$id);

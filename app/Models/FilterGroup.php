@@ -10,10 +10,11 @@ class FilterGroup extends Model
     use HasFactory;
     public $timestamps = false;
 
-    const TYPES = ['checkbox','radio','select'];
+    const TYPES = ['checkbox','radio','select','range'];
 
     const TYPE_CHECKBOX = "checkbox";
     const TYPE_RADIO = "radio";
+    const TYPE_RANGE = "range";
     const TYPE_SELECT = "select";
 
     protected $casts = [
