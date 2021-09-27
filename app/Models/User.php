@@ -68,7 +68,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     function getLogoAttribute($value){
-        return $value ? URL::to("public/images/".$value) : null;
+        return $value ? URL::to("images/".$value) : null;
     }
 
     function getUrlsAttribute($value){

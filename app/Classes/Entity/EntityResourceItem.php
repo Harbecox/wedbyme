@@ -46,5 +46,5 @@ abstract class EntityResourceItem
 
     abstract protected function makeNCF();
 
-    abstract public function make(...$options);
+    abstract public function make(EntityResourceItem ...$options);
 }

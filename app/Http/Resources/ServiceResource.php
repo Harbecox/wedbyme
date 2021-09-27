@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HallResource extends JsonResource
+class ServiceResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,6 @@ class HallResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'coords' => $this->coords,
-            'address' => $this->address,
             'review' => $this->review,
             'phones' => $this->phones,
             'images' => $this->images,
@@ -26,10 +24,8 @@ class HallResource extends JsonResource
             'urls' => $this->urls,
             'description' => $this->description,
             'calendar' => CalendarResource::make($this->calendar),
-            'filters' => HallFilterResource::collection($this->filters),
+            'filters' => ServiceFilterResource::collection($this->filters),
             'company' => $this->whenLoaded("company",CompanyResource::make($this->company))
         ];
     }
 }
-
-

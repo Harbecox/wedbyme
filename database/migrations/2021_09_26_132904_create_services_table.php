@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHallsTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHallsTable extends Migration
      */
     public function up()
     {
-        Schema::create('halls', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("company_id")->index();
             $table->foreign('company_id')
@@ -23,9 +23,7 @@ class CreateHallsTable extends Migration
                 ->onUpdate("cascade");
             $table->json("images")->nullable();
             $table->json("urls")->nullable();
-            $table->json("coords");
             $table->json("phones");
-            $table->string("address");
             $table->string("title");
             $table->string("seo_url");
             $table->float("review");
@@ -47,6 +45,6 @@ class CreateHallsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('halls');
+        Schema::dropIfExists('services');
     }
 }

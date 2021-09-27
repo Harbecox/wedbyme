@@ -25,6 +25,8 @@ Route::middleware('auth:api')->group(function (){
         Route::resource("hall_filter",\App\Http\Controllers\Admin\AdminHallFilterController::class);
         Route::resource("calendar",\App\Http\Controllers\Admin\AdminCalendarController::class);
         Route::resource("calendar_day",\App\Http\Controllers\Admin\AdminCalendarDayController::class);
+        Route::resource("service",\App\Http\Controllers\Admin\AdminServiceController::class);
+        Route::resource("service_filter",\App\Http\Controllers\Admin\AdminServiceFilterController::class);
     });
 });
 
