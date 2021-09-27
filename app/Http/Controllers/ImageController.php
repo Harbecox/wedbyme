@@ -38,7 +38,7 @@ class ImageController extends Controller
         }
     }
 
-    function resizeImage($image, $nw): bool
+    function resizeImage($image, $nw)
     {
         $disk = Storage::disk("images");
         $img = Image::make($disk->get($image));
