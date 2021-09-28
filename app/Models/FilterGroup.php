@@ -29,7 +29,7 @@ class FilterGroup extends Model
     ];
 
     function items(){
-        return $this->hasMany(FilterItem::class,"group_id","id");
+        return $this->hasMany(FilterItem::class,"group_id","id")->orderBy("position");
     }
 
 }
