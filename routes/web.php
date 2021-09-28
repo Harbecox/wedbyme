@@ -31,7 +31,10 @@ Route::middleware('auth:api')->group(function (){
 });
 
 Route::prefix("halls")->group(function (){
-    Route::get("filters",[\App\Http\Controllers\Front\HallController::class,"filters"]);
     Route::post("/",[App\Http\Controllers\Front\HallController::class,"index"]);
     Route::get("/{seo_url}",[App\Http\Controllers\Front\HallController::class,"show"]);
+});
+
+Route::prefix("profile")->group(function (){
+    
 });

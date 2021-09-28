@@ -9,6 +9,7 @@ use App\Models\FilterGroup;
 use App\Models\Hall;
 use App\Models\HallFilter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HallController extends Controller
 {
@@ -47,13 +48,38 @@ class HallController extends Controller
             ->limit($limit)
             ->offset($offset)
             ->get();
-
-        return $this->response(HallResource::collection($halls_collection));
+        $count = Hall::query()
+            ->whereIn("id", $hall_ids)
+            ->count();
+        return $this->response([
+            'items' => HallResource::collection($halls_collection),
+            'filters' => $this->filters($hall_ids),
+            'count' => $count,
+        ]);
     }
 
-    function filters()
+    private function filters($hall_ids)
     {
-        return $this->response(FilterGroupResource::collection(FilterGroup::with("items")->get()));
+        $query =  HallFilter::query()
+            ->select(["filter_id",DB::raw("count(hall_id) as count")]);
+        if(count($hall_ids)){
+            $query = $query->whereIn("hall_id",$hall_ids);
+        }
+        $counts = $query
+            ->groupBy("filter_id")
+            ->get()
+            ->keyBy("filter_id")
+            ->map(function ($item){
+                return $item->count;
+            });
+        $filter_group = FilterGroup::with("items")->get()->map(function ($group) use ($counts){
+            $group['items'] = $group->items->map(function ($item) use ($counts){
+                $item['count'] = isset($counts[$item['id']]) ? $counts[$item['id']] : 0;
+                return $item;
+            });
+            return $group;
+        });
+        return FilterGroupResource::collection($filter_group);
     }
 
     function show($seo_url)
