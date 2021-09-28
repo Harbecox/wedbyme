@@ -17,7 +17,7 @@ Route::prefix("image")->group(function (){
 
 Route::middleware('auth:api')->group(function (){
 
-    Route::prefix('admin')->middleware('admin')->group(function (){
+    Route::prefix('admin')->middleware('admin')->as("admin")->group(function (){
         Route::resource("company",\App\Http\Controllers\Admin\AdminCompanyController::class);
         Route::resource("hall",\App\Http\Controllers\Admin\AdminHallController::class);
         Route::resource("filter_group",\App\Http\Controllers\Admin\AdminFilterGroupController::class);
@@ -28,13 +28,16 @@ Route::middleware('auth:api')->group(function (){
         Route::resource("service",\App\Http\Controllers\Admin\AdminServiceController::class);
         Route::resource("service_filter",\App\Http\Controllers\Admin\AdminServiceFilterController::class);
     });
+
+    Route::prefix("profile")->group(function (){
+        Route::get("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"index"]);
+        Route::put("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"update"]);
+        Route::resource("hall",\App\Http\Controllers\Front\CompanyHallsController::class);
+        Route::resource("hall",\App\Http\Controllers\Front\CompanyHallsController::class);
+    });
 });
 
 Route::prefix("halls")->group(function (){
     Route::post("/",[App\Http\Controllers\Front\HallController::class,"index"]);
     Route::get("/{seo_url}",[App\Http\Controllers\Front\HallController::class,"show"]);
-});
-
-Route::prefix("profile")->group(function (){
-    
 });

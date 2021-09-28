@@ -9,6 +9,7 @@ use App\Models\FilterGroup;
 use App\Models\Hall;
 use App\Models\HallFilter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class HallController extends Controller
@@ -20,28 +21,35 @@ class HallController extends Controller
         $filter_groups_types = FilterGroup::all()->keyBy("id")->map(function ($group){
             return $group->type;
         })->toArray();
-        $query = HallFilter::query();
+        $halls = [];
+        foreach (HallFilter::all() as $hall_filter){
+            $halls[$hall_filter['hall_id']][] = $hall_filter['filter_id'];
+        }
+        $halls = collect($halls);
         if ($request->has('filter_id')) {
             $filters = $request->get('filter_id');
             foreach ($filters as $group_id => $filter_ids) {
                 if ($filter_groups_types[$group_id] == FilterGroup::TYPE_CHECKBOX || $filter_groups_types[$group_id] == FilterGroup::TYPE_RANGE) {
-                    $query = $query->where(function ($q) use ($filter_ids) {
-                        foreach ($filter_ids as $id){
-                            $q->orWhere("filter_id",$id);
+                    $halls = $halls->filter(function ($item) use ($filter_ids){
+                        $t = false;
+                        while($t === false && count($filter_ids) > 0){
+                            $t = in_array(array_pop($filter_ids),$item);
                         }
+                        return $t;
                     });
                 } else {
-                    $query = $query->where("filter_id",$filter_ids);
+                    $halls = $halls->filter(function ($item) use ($filter_ids){
+                        return in_array($filter_ids,$item);
+                    });
                 }
             }
-            $hall_ids = $query->get()->map(function (HallFilter $hallFilter){
-                return $hallFilter->hall_id;
-            });
+            $hall_ids = $halls->keys();
         }else{
             $hall_ids = Hall::all()->map(function (Hall $hall){
                 return $hall->id;
             });
         }
+
         $halls_collection = Hall::query()
             ->whereIn("id", $hall_ids)
             ->with("company")
