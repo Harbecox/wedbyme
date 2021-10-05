@@ -63,6 +63,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Hall::class,"company_id","id")->with("calendar");
     }
 
+    function services(){
+        return $this->hasMany(Service::class,"company_id",'id');
+    }
+
     static function companies(){
         return User::query()->where("role",self::ROLE_COMPANY)->get();
     }

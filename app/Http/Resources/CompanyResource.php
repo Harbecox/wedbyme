@@ -25,7 +25,8 @@ class CompanyResource extends JsonResource
             'role' => $this->role,
             'urls' => $this->urls,
             'created_at' => $this->created_at,
-            'halls' => HallResource::collection($this->whenLoaded('halls'))
+            'halls' => HallResource::collection($this->whenLoaded('halls')),
+            'services' => ServiceResource::collection($this->whenLoaded("services"))
         ];
     }
 }

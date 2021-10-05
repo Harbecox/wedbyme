@@ -32,8 +32,15 @@ Route::middleware('auth:api')->group(function (){
     Route::prefix("profile")->group(function (){
         Route::get("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"index"]);
         Route::put("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"update"]);
-        Route::resource("hall",\App\Http\Controllers\Front\CompanyHallsController::class);
-        Route::resource("hall",\App\Http\Controllers\Front\CompanyHallsController::class);
+        Route::prefix("hall")->group(function (){
+            Route::post("",[\App\Http\Controllers\Front\CompanyProfileController::class,"store_hall"]);
+            Route::prefix("{id}")->group(function (){
+                Route::put("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"update_hall"]);
+                Route::delete("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"delete_hall"]);
+                Route::put("filters",[\App\Http\Controllers\Front\CompanyProfileController::class,"store_update_filters"]);
+            });
+        });
+
     });
 });
 

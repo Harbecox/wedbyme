@@ -26,7 +26,7 @@ class HallResource extends JsonResource
             'urls' => $this->urls,
             'description' => $this->description,
             'calendar' => CalendarResource::make($this->calendar),
-            'filters' => HallFilterResource::collection($this->filters),
+            'filters' => $this->whenLoaded("filters",HallFilterResource::collection($this->filters)),
             'company' => $this->whenLoaded("company",CompanyResource::make($this->company))
         ];
     }

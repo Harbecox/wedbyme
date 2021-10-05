@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\HallAttribute;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class HallStoreRequest extends ApiRequest
 {
@@ -25,15 +26,15 @@ class HallStoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            "company_id" => "required|exists:users,id",
-            "images" => "required|array",
-            "coords" => "required|array",
-            "phones" => "required|array",
-            "address" => "required",
-            "region" => "required",
-            "review" => "required|numeric|between:0,5",
-            "title" => "required",
-            "seo_url" => "required",
+            "company_id"    => "exists:users,id",
+            "images"        => "required|array",
+            "coords"        => "required|array",
+            "phones"        => "required|array",
+            "address"       => "required",
+            "region"        => "required",
+            "review"        => "required|numeric|between:0,5",
+            "title"         => "required",
+            "seo_url"       => Rule::unique("halls"),
         ];
     }
 

@@ -68,7 +68,7 @@ class HallController extends Controller
 
     private function filters($hall_ids)
     {
-        $query =  HallFilter::query()
+        $query = HallFilter::query()
             ->select(["filter_id",DB::raw("count(hall_id) as count")]);
         if(count($hall_ids)){
             $query = $query->whereIn("hall_id",$hall_ids);

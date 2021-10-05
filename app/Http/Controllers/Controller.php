@@ -16,4 +16,8 @@ class Controller extends BaseController
         return response()->json($data,$http_status,$headers);
     }
 
+    function updateResponse(){
+        return $this->response(null,Response::HTTP_NO_CONTENT);
+    }
+
 }
