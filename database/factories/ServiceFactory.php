@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Hall;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class HallFactory extends Factory
+class ServiceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Hall::class;
+    protected $model = Service::class;
 
     /**
      * Define the model's default state.
@@ -40,15 +40,13 @@ class HallFactory extends Factory
         }
         $images = collect(Storage::disk("public")->files('test_data/foto'));
         $images = $images->random($this->faker->numberBetween(1,$images->count()));
-        $title = $this->faker->company;
+        $title = $this->faker->jobTitle;
         return [
             "title"         => $title,
             "seo_url"       => Str::slug($title),
             "images"        => $images,
-            "coords"        => [40 + $this->faker->randomFloat(5,-0.5,0.5),44 + $this->faker->randomFloat(5,-0.5,0.5)],
             "phones"        => $phones,
             "review"        => $this->faker->randomFloat(1,3,5),
-            "address"       => $this->faker->address,
             "description"   => $this->faker->realText(500),
             "urls"          => $urls->random(rand(2,4))->toArray()
         ];

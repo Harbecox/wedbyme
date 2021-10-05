@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    function index(Request $request){
-        $limit = $request->has("limit") ? $request->get("limit") : 20;
-        $offset = $request->has("offset") ? $request->get("offset") : 0;
-        $companies = User::query()->limit($limit)->offset($offset)->get();
+    function index(){
+        $companies = User::companies();
+        return $this->response(CompanyResource::collection($companies));
     }
 
     function show($seo_url){
-        $company = User::query()->where("seo_url",$seo_url)->firstOrFail();
+        $company = User::query()->where("seo_url",$seo_url)->with("halls")->with("services")->firstOrFail();
         return $this->response(CompanyResource::make($company));
     }
 }

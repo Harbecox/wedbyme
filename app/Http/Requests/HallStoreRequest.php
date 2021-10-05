@@ -31,8 +31,7 @@ class HallStoreRequest extends ApiRequest
             "coords"        => "required|array",
             "phones"        => "required|array",
             "address"       => "required",
-            "region"        => "required",
-            "review"        => "required|numeric|between:0,5",
+            "review"        => "numeric|between:0,5",
             "title"         => "required",
             "seo_url"       => Rule::unique("halls"),
         ];

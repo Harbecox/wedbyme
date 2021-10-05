@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ServiceStoreRequest extends ApiRequest
 {
@@ -24,12 +25,12 @@ class ServiceStoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            "company_id" => "required|exists:users,id",
+            "company_id" => "exists:users,id",
             "images" => "required|array",
             "phones" => "required|array",
-            "review" => "required|numeric|between:0,5",
+            "review" => "numeric|between:0,5",
             "title" => "required",
-            "seo_url" => "required",
+            "seo_url" => Rule::unique("services"),
         ];
     }
 }

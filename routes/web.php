@@ -9,13 +9,12 @@ Route::prefix("auth")->group(function (){
         ->name('unauthorized');
 });
 
-Route::prefix("image")->group(function (){
-    Route::get("{image}",[\App\Http\Controllers\ImageController::class,"get"]);
-    Route::post("upload",[\App\Http\Controllers\ImageController::class,"upload"]);
-});
-
-
 Route::middleware('auth:api')->group(function (){
+
+    Route::prefix("image")->group(function (){
+        Route::get("{image}",[\App\Http\Controllers\ImageController::class,"get"]);
+        Route::post("upload",[\App\Http\Controllers\ImageController::class,"upload"]);
+    });
 
     Route::prefix('admin')->middleware('admin')->as("admin")->group(function (){
         Route::resource("company",\App\Http\Controllers\Admin\AdminCompanyController::class);
@@ -37,14 +36,31 @@ Route::middleware('auth:api')->group(function (){
             Route::prefix("{id}")->group(function (){
                 Route::put("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"update_hall"]);
                 Route::delete("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"delete_hall"]);
-                Route::put("filters",[\App\Http\Controllers\Front\CompanyProfileController::class,"store_update_filters"]);
+                Route::put("filters",[\App\Http\Controllers\Front\CompanyProfileController::class,"update_hall_filters"]);
             });
         });
-
+        Route::prefix("service")->group(function (){
+            Route::post("",[\App\Http\Controllers\Front\CompanyProfileController::class,"store_service"]);
+            Route::prefix("{id}")->group(function (){
+                Route::put("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"update_service"]);
+                Route::delete("/",[\App\Http\Controllers\Front\CompanyProfileController::class,"delete_service"]);
+                Route::put("filters",[\App\Http\Controllers\Front\CompanyProfileController::class,"update_service_filters"]);
+            });
+        });
     });
+});
+
+Route::prefix("services")->group(function (){
+    Route::post("/",[App\Http\Controllers\Front\ServiceController::class,"index"]);
+    Route::get("/{seo_url}",[App\Http\Controllers\Front\ServiceController::class,"show"]);
 });
 
 Route::prefix("halls")->group(function (){
     Route::post("/",[App\Http\Controllers\Front\HallController::class,"index"]);
     Route::get("/{seo_url}",[App\Http\Controllers\Front\HallController::class,"show"]);
+});
+
+Route::prefix("company")->group(function (){
+    Route::get("/",[\App\Http\Controllers\Front\CompanyController::class,"index"]);
+    Route::get("{seo_url}",[\App\Http\Controllers\Front\CompanyController::class,"show"]);
 });
