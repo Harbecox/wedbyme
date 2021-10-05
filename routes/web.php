@@ -9,12 +9,12 @@ Route::prefix("auth")->group(function (){
         ->name('unauthorized');
 });
 
+
+Route::get("image/{image}",[\App\Http\Controllers\ImageController::class,"get"]);
+
 Route::middleware('auth:api')->group(function (){
 
-    Route::prefix("image")->group(function (){
-        Route::get("{image}",[\App\Http\Controllers\ImageController::class,"get"]);
-        Route::post("upload",[\App\Http\Controllers\ImageController::class,"upload"]);
-    });
+    Route::post("image/upload",[\App\Http\Controllers\ImageController::class,"upload"]);
 
     Route::prefix('admin')->middleware('admin')->as("admin")->group(function (){
         Route::resource("company",\App\Http\Controllers\Admin\AdminCompanyController::class);
