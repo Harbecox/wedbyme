@@ -22,6 +22,7 @@ class HallFilterResource extends JsonResource
                 "value" => $this->filter->value,
             ],
             "filter_group" => [
+                "name" => $this->filter->filter_group->name,
                 "title" => $this->filter->filter_group->title,
                 "type" => $this->filter->filter_group->type,
                 "options" => $this->filter->filter_group->options,

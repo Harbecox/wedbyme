@@ -62,6 +62,7 @@ class CompanyProfileController extends Controller
         foreach ($filter_ids as $id){
             $hall->filters()->create(['filter_id' => $id]);
         }
+        return $this->updateResponse();
     }
 
     function store_service(ServiceStoreRequest $request){
@@ -87,6 +88,7 @@ class CompanyProfileController extends Controller
         foreach ($filter_ids as $id){
             $service->filters()->create(['filter_id' => $id]);
         }
+        return $this->updateResponse();
     }
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HallFilterStoreRequest;
 use App\Http\Requests\HallFilterUpdateRequest;
 use App\Models\Hall;
+use App\Models\HallFilter;
 use App\Repositories\HallFilterRepository;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class AdminHallFilterController extends AdminBaseController
         'update' => HallFilterUpdateRequest::class,
     ];
 
-    protected $model = Hall::class;
+    protected $model = HallFilter::class;
 
     function __construct()
     {

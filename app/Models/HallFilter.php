@@ -17,6 +17,11 @@ class HallFilter extends Model
         "filter_id",
     ];
 
+    protected $casts = [
+        "hall_id"       => "integer",
+        "filter_id"     => "integer",
+    ];
+
     function filter(){
         return $this->belongsTo(FilterItem::class,"filter_id","id");
     }

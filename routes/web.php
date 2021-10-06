@@ -19,13 +19,13 @@ Route::middleware('auth:api')->group(function (){
     Route::prefix('admin')->middleware('admin')->as("admin")->group(function (){
         Route::resource("company",\App\Http\Controllers\Admin\AdminCompanyController::class);
         Route::resource("hall",\App\Http\Controllers\Admin\AdminHallController::class);
+        Route::post("hall/{hall_id}/filters",[\App\Http\Controllers\Admin\AdminHallController::class,"filter_update"])->name("admin_hall_filter_update");
         Route::resource("filter_group",\App\Http\Controllers\Admin\AdminFilterGroupController::class);
         Route::resource("filter",\App\Http\Controllers\Admin\AdminFilterController::class);
-        Route::resource("hall_filter",\App\Http\Controllers\Admin\AdminHallFilterController::class);
         Route::resource("calendar",\App\Http\Controllers\Admin\AdminCalendarController::class);
         Route::resource("calendar_day",\App\Http\Controllers\Admin\AdminCalendarDayController::class);
         Route::resource("service",\App\Http\Controllers\Admin\AdminServiceController::class);
-        Route::resource("service_filter",\App\Http\Controllers\Admin\AdminServiceFilterController::class);
+        Route::post("service/{service_id}/filters",[\App\Http\Controllers\Admin\AdminServiceController::class,"filter_update"])->name("admin_service_filter_update");
     });
 
     Route::prefix("profile")->group(function (){
