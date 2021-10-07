@@ -11,6 +11,7 @@ Route::prefix("auth")->group(function (){
 
 
 Route::get("image/{image}",[\App\Http\Controllers\ImageController::class,"get"]);
+Route::get("home",[\App\Http\Controllers\Front\HomeController::class,"index"]);
 
 Route::middleware('auth:api')->group(function (){
 
@@ -26,6 +27,9 @@ Route::middleware('auth:api')->group(function (){
         Route::resource("calendar_day",\App\Http\Controllers\Admin\AdminCalendarDayController::class);
         Route::resource("service",\App\Http\Controllers\Admin\AdminServiceController::class);
         Route::post("service/{service_id}/filters",[\App\Http\Controllers\Admin\AdminServiceController::class,"filter_update"])->name("admin_service_filter_update");
+        Route::prefix("home")->group(function (){
+            Route::get("/",[\App\Http\Controllers\Admin\AdminHomeController::class,"index"]);
+        });
     });
 
     Route::prefix("profile")->group(function (){

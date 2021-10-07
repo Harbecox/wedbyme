@@ -38,7 +38,10 @@ class HallFactory extends Factory
         for($i = 0;$i < rand(1,3);$i++){
             $phones[] = "+374".$this->faker->numberBetween(10000000,99999999);
         }
-        $images = collect(Storage::disk("public")->files('test_data/foto'));
+        $images = collect(Storage::disk("public")->files())->filter(function ($image){
+            return strpos($image,"logo") === false;
+        });
+
         $images = $images->random($this->faker->numberBetween(1,$images->count()));
         $title = $this->faker->company;
         return [

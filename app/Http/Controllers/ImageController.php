@@ -32,10 +32,29 @@ class ImageController extends Controller
         if ($request->hasFile("image")) {
             $disk = Storage::disk("images");
             $image = $disk->put("", $request->file("image"));
+            $this->resizeIfBig($image);
             return $this->response(URL::to("image/" . $image));
         } else {
             return $this->response(false,422);
         }
+    }
+
+    function resizeIfBig($image){
+        $disk = Storage::disk("images");
+        $img = Image::make($disk->get($image));
+        $w = $img->getWidth();
+        $h = $img->getHeight();
+        if($w > 1920){
+            $nw = 1920;
+            $h = ($h * $nw) / $w;
+            $w = $nw;
+        }
+        if($h > 1080){
+            $nh = 1080;
+            $w = ($w * $nh) / $h;
+            $h = $nh;
+        }
+        $img->resize($w, $h)->save(public_path("images/" . $image));
     }
 
     function resizeImage($image, $nw)

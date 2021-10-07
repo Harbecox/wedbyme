@@ -23,7 +23,9 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $logos = Storage::disk("public")->files("test_data/logo");
+        $logos = collect(Storage::disk("public")->files())->filter(function ($image){
+            return strpos($image,"logo") !== false;
+        });
         $title = $this->faker->company;
         return [
             'email' => $this->faker->unique()->safeEmail(),
