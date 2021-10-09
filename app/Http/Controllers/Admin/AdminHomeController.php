@@ -24,8 +24,8 @@ class AdminHomeController extends Controller
     }
 
     function update(Request $request){
-        $data['company'] = $request->get("company",[]);
-        $data['hall'] = $request->get("hall",[]);
+        $data['companies'] = $request->get("companies",[]);
+        $data['halls'] = $request->get("halls",[]);
         $data['services'] = $request->get("services",[]);
         $data['slider'] = $request->get("slider",[]);
 
