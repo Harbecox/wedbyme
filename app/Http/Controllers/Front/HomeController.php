@@ -25,6 +25,10 @@ class HomeController extends Controller
     }
 
     function search(Request $request){
-
+        $s = $request->get("s");
+        $arrays['companies'] = CompanyResource::collection(User::query()->where('title',"LIKE","%".$s."%")->get());
+        $arrays['halls'] = HallResource::collection(Hall::query()->where('title',"LIKE","%".$s."%")->get());
+        $arrays['services'] = HallResource::collection(Service::query()->where('title',"LIKE","%".$s."%")->get());
+        return $this->response($arrays);
     }
 }
