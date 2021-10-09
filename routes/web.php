@@ -12,6 +12,7 @@ Route::prefix("auth")->group(function (){
 
 Route::get("image/{image}",[\App\Http\Controllers\ImageController::class,"get"]);
 Route::get("home",[\App\Http\Controllers\Front\HomeController::class,"index"]);
+Route::post("search",[\App\Http\Controllers\Front\HomeController::class,"search"]);
 
 Route::middleware('auth:api')->group(function (){
 

@@ -19,13 +19,13 @@ class HomeSeeder extends Seeder
     public function run()
     {
         Home::create([
-            "name"  => "company",
+            "name"  => "companies",
             "items" => User::all()->random(5)->map(function ($item){
                 return $item->id;
             })->toArray()
         ]);
         Home::create([
-            "name"  => "hall",
+            "name"  => "halls",
             "items" => Hall::all()->random(5)->map(function ($item){
                 return $item->id;
             })->toArray()
