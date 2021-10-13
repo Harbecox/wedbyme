@@ -20,27 +20,31 @@ class HomeSeeder extends Seeder
     {
         Home::create([
             "name"  => "companies",
-            "items" => User::all()->random(5)->map(function ($item){
-                return $item->id;
-            })->toArray()
+            "items" => []
+//            "items" => User::all()->random(5)->map(function ($item){
+//                return $item->id;
+//            })->toArray()
         ]);
         Home::create([
             "name"  => "halls",
-            "items" => Hall::all()->random(5)->map(function ($item){
-                return $item->id;
-            })->toArray()
+            "items" => []
+//            "items" => Hall::all()->random(5)->map(function ($item){
+//                return $item->id;
+//            })->toArray()
         ]);
         Home::create([
             "name"  => "services",
-            "items" => Service::all()->random(5)->map(function ($item){
-                return $item->id;
-            })->toArray()
+            "items" => []
+//            "items" => Service::all()->random(5)->map(function ($item){
+//                return $item->id;
+//            })->toArray()
         ]);
         Home::create([
             "name"  => "slider",
-            "items" => collect(Storage::disk("public")->files())->filter(function ($image){
-                return strpos($image,"logo") === false;
-            })
+            "items" => []
+//            "items" => collect(Storage::disk("public")->files())->filter(function ($image){
+//                return strpos($image,"logo") === false;
+//            })
         ]);
     }
 }

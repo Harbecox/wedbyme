@@ -10,9 +10,12 @@ use App\Http\Requests\ServiceUpdateRequest;
 use App\Http\Resources\CompanyResource;
 use App\Http\Resources\HallResource;
 use App\Http\Resources\ServiceResource;
+use App\Mail\HallMail;
+use App\Mail\ServiceMail;
 use App\Models\Hall;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 
 class CompanyProfileController extends Controller
@@ -42,6 +45,7 @@ class CompanyProfileController extends Controller
     function store_hall(HallStoreRequest $request){
         $data = $request->all();
         $hall = $this->company->halls()->create($data);
+        Mail::to("info@wedbyme.am")->send(new HallMail($hall));
         return HallResource::make($hall);
     }
 
@@ -67,8 +71,9 @@ class CompanyProfileController extends Controller
 
     function store_service(ServiceStoreRequest $request){
         $data = $request->all();
-        $hall = $this->company->services()->create($data);
-        return ServiceResource::make($hall);
+        $service = $this->company->services()->create($data);
+        Mail::to("info@wedbyme.am")->send(new ServiceMail($service));
+        return ServiceResource::make($service);
     }
 
     function update_service(ServiceUpdateRequest $request,$id){
@@ -90,5 +95,6 @@ class CompanyProfileController extends Controller
         }
         return $this->updateResponse();
     }
+
 
 }
