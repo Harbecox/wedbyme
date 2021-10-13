@@ -23,9 +23,9 @@ class HallMail extends Mailable
     }
 
     function telegram(){
-        $msg = $this->urls['front']."<br>";
+        $msg = $this->urls['front']."%0A";
         $msg.= $this->urls['admin'];
-        $url = 'https://api.telegram.org/bot2087911716:AAHhXCxyMnVb8c1QmstHmiNyusDynGv_JI4/sendMessage?chat_id=-672072736&text='.$msg;
+        $url = "https://api.telegram.org/bot2087911716:AAHhXCxyMnVb8c1QmstHmiNyusDynGv_JI4/sendMessage?chat_id=-672072736&text=".$msg;
         file_get_contents($url);
     }
 
