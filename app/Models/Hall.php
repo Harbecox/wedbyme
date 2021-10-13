@@ -85,7 +85,7 @@ class Hall extends Model
 
     function setCoordsAttribute($arr){
         $arr = collect($arr)->map(function ($item){
-            return intval($item);
+            return floatval($item);
         });
         $this->attributes['coords'] = json_encode($arr,256);
     }
