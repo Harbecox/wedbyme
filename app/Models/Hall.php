@@ -106,4 +106,6 @@ class Hall extends Model
         return $this->belongsTo(User::class,"company_id","id");
     }
 
+
+
 }

@@ -96,5 +96,4 @@ class CompanyProfileController extends Controller
         return $this->updateResponse();
     }
 
-
 }
