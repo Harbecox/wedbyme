@@ -19,6 +19,7 @@ class HallMail extends Mailable
             "front" => "http://wedbyme.am/".$hall->company->seo_url."/service/".$hall->seo_url,
             "admin" => "http://wedbyme.am/admin/services/".$hall->id
         ];
+        $this->telegram();
     }
 
     function telegram(){

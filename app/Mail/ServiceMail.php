@@ -19,6 +19,7 @@ class ServiceMail extends Mailable
             "front" => "http://wedbyme.am/".$service->company->seo_url."/service/".$service->seo_url,
             "admin" => "http://wedbyme.am/admin/services/".$service->id
         ];
+        $this->telegram();
     }
 
     function telegram(){
