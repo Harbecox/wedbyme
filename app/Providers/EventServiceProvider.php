@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Hall;
 use App\Models\Service;
+use App\Models\User;
 use App\Observers\HallObserver;
 use App\Observers\ServiceObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
