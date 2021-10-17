@@ -15,23 +15,39 @@ class AdminHomeController extends Controller
 {
     function index(){
         $arrays = Home::all()->keyBy("name")->map(function ($item) {
-            return $item->items;
+            return $item->item;
         });
         $arrays['companies'] = CompanyResource::collection(User::query()->whereIn("id", $arrays['companies'])->get());
         $arrays['halls'] = HallResource::collection(Hall::query()->whereIn("id", $arrays['halls'])->get());
         $arrays['services'] = HallResource::collection(Service::query()->whereIn("id", $arrays['services'])->get());
+        $slider = [];
+        foreach ($arrays['slider'] as $slide){
+            $slider[] = json_decode($slide,true);
+        }
+        $arrays['slider'] = $slider;
         return $this->response($arrays);
     }
 
     function update(Request $request){
-        $data['companies'] = $request->get("companies",[]);
-        $data['halls'] = $request->get("halls",[]);
-        $data['services'] = $request->get("services",[]);
-        $data['slider'] = $request->get("slider",[]);
+        $data = [];
+        if($request->has('companies')){
+            $data['companies'] = $request->get("companies",[]);
+        }
+        if($request->has('halls')){
+            $data['halls'] = $request->get("halls",[]);
+        }
+        if($request->has('services')){
+            $data['services'] = $request->get("services",[]);
+        }
+        if($request->has('slider')){
+            $data['slider'] = $request->get("slider",[]);
+        }
 
         foreach ($data as $name => $items){
-            Home::query()->where("name",$name)->update($items);
+            Home::query()->where("name",$name)->update(['item' => $items]);
         }
+
+        return $this->index();
 
     }
 }

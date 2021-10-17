@@ -20,28 +20,28 @@ class HomeSeeder extends Seeder
     {
         Home::create([
             "name"  => "companies",
-            "items" => []
+            "item" => json_encode([],256)
 //            "items" => User::all()->random(5)->map(function ($item){
 //                return $item->id;
 //            })->toArray()
         ]);
         Home::create([
             "name"  => "halls",
-            "items" => []
+            "item" => json_encode([],256)
 //            "items" => Hall::all()->random(5)->map(function ($item){
 //                return $item->id;
 //            })->toArray()
         ]);
         Home::create([
             "name"  => "services",
-            "items" => []
+            "item" => json_encode([],256)
 //            "items" => Service::all()->random(5)->map(function ($item){
 //                return $item->id;
 //            })->toArray()
         ]);
         Home::create([
             "name"  => "slider",
-            "items" => []
+            "item" => json_encode([],256)
 //            "items" => collect(Storage::disk("public")->files())->filter(function ($image){
 //                return strpos($image,"logo") === false;
 //            })

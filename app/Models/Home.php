@@ -10,17 +10,12 @@ class Home extends Model
 {
     use HasFactory;
 
-    function getItemsAttribute($value){
-        $arr = json_decode($value,true);
-        if($this->name == "slider"){
-            foreach ($arr as &$item){
-                $item = Url::to("image/".$item);
-            }
-        }
-        return $arr;
+    function getItemAttribute($value){
+        return json_decode($value,true);
     }
 
-    function setItemsAttribute($arr){
-        $this->attributes['items'] = json_encode($arr,256);
+    function setItemAttribute($arr){
+        echo $arr[0];
+        $this->attributes['item'] = json_encode($arr,256);
     }
 }
