@@ -19,6 +19,7 @@ class HomeController extends Controller
             return $item->item;
         });
 
+        
         $arrays['companies'] = CompanyResource::collection(User::query()->whereIn("id", $arrays['companies'])->get());
         $arrays['halls'] = HallResource::collection(Hall::query()->whereIn("id", $arrays['halls'])->get());
         $arrays['services'] = HallResource::collection(Service::query()->whereIn("id", $arrays['services'])->get());
