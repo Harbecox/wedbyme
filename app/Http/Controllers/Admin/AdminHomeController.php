@@ -17,14 +17,11 @@ class AdminHomeController extends Controller
         $arrays = Home::all()->keyBy("name")->map(function ($item) {
             return $item->item;
         });
+
         $arrays['companies'] = CompanyResource::collection(User::query()->whereIn("id", $arrays['companies'])->get());
         $arrays['halls'] = HallResource::collection(Hall::query()->whereIn("id", $arrays['halls'])->get());
         $arrays['services'] = HallResource::collection(Service::query()->whereIn("id", $arrays['services'])->get());
-        $slider = [];
-        foreach ($arrays['slider'] as $slide){
-            $slider[] = json_decode($slide,true);
-        }
-        $arrays['slider'] = $slider;
+
         return $this->response($arrays);
     }
 
