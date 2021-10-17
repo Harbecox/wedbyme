@@ -29,7 +29,8 @@ Route::middleware('auth:api')->group(function (){
         Route::resource("service",\App\Http\Controllers\Admin\AdminServiceController::class);
         Route::post("service/{service_id}/filters",[\App\Http\Controllers\Admin\AdminServiceController::class,"filter_update"])->name("admin_service_filter_update");
         Route::prefix("home")->group(function (){
-            Route::get("/",[\App\Http\Controllers\Admin\AdminHomeController::class,"index"]);
+            Route::get("/",[\App\Http\Controllers\Admin\AdminHomeController::class,"index"])->name("admin.home.index");
+            Route::post("/",[\App\Http\Controllers\Admin\AdminHomeController::class,"update"])->name("admin.home.update");
         });
     });
 
