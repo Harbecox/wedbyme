@@ -53,9 +53,11 @@ class User extends Authenticatable implements JWTSubject
 
     const ROLE_ADMIN = "admin";
     const ROLE_COMPANY = "company";
+    const ROLE_SERVICE = "service";
     const ROLES = [
         self::ROLE_ADMIN,
-        self::ROLE_COMPANY
+        self::ROLE_COMPANY,
+        self::ROLE_SERVICE
     ];
 
     function halls(){
