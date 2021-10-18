@@ -13,9 +13,10 @@ class NewCompanyMail extends Mailable
 
     private $data;
 
-    public function __construct($password)
+    public function __construct($password,$company)
     {
         $this->data['password'] = $password;
+        $this->data['title'] = $company->title;
     }
 
     /**

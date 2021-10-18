@@ -14,7 +14,7 @@ class CompanyRepository extends BaseRepository
     function add($data)
     {
         $user = $this->model::create($data);
-        Mail::to($user)->send(new NewCompanyMail($data['password']));
+        Mail::to($user)->send(new NewCompanyMail($data['password'],$user));
         return  $user;
     }
 }
