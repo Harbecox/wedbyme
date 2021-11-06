@@ -80,7 +80,7 @@ class HallController extends Controller
             ->map(function ($item){
                 return $item->count;
             });
-        $filter_group = FilterGroup::with("items")->orderBy("position")->get()->map(function ($group) use ($counts){
+        $filter_group = FilterGroup::with("items")->where("cat",FilterGroup::CAT_HALL)->orderBy("position")->get()->map(function ($group) use ($counts){
             $group['items'] = $group->items->map(function ($item) use ($counts){
                 $item['count'] = isset($counts[$item['id']]) ? $counts[$item['id']] : 0;
                 return $item;

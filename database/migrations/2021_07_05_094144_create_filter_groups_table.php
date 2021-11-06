@@ -18,6 +18,7 @@ class CreateFilterGroupsTable extends Migration
             $table->string("title");
             $table->integer("position")->nullable()->default(0);
             $table->enum("type",\App\Models\FilterGroup::TYPES);
+            $table->enum("cat",\App\Models\FilterGroup::CATS);
             $table->string("name")->nullable();
         });
     }

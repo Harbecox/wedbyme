@@ -28,6 +28,7 @@ class FilterGroupStoreRequest extends ApiRequest
             "title" => "required",
             "position" => "numeric",
             "type" => ['required',Rule::in(FilterGroup::TYPES)],
+            "cat"  => ['required',Rule::in(FilterGroup::CATS)]
         ];
     }
 }

@@ -17,6 +17,11 @@ class FilterGroup extends Model
     const TYPE_RANGE = "range";
     const TYPE_SELECT = "select";
 
+    const CAT_SERVICE = "service";
+    const CAT_HALL = "hall";
+
+    const CATS = [self::CAT_SERVICE,self::CAT_HALL];
+
     protected $casts = [
         "position" => "integer"
     ];
@@ -25,7 +30,8 @@ class FilterGroup extends Model
         'title',
         'position',
         'type',
-        'name'
+        'name',
+        'cat'
     ];
 
     function items(){

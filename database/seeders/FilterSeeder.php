@@ -28,7 +28,13 @@ class FilterSeeder extends Seeder
             'Շիրակ',
         ];
 
-        $group = FilterGroup::create(['title' => "Մարզ","position" => 3, "type" => "select", "name" => "region"]);
+        $group = FilterGroup::create(['title' => "Մարզ","position" => 3, "type" => "select", "name" => "region","cat" => FilterGroup::CAT_HALL]);
+
+        foreach ($regions as $k => $item){
+            $group->items()->create(['position' => $k, "title" => $item]);
+        }
+
+        $group = FilterGroup::create(['title' => "Մարզ","position" => 3, "type" => "select", "name" => "region","cat" => FilterGroup::CAT_SERVICE]);
 
         foreach ($regions as $k => $item){
             $group->items()->create(['position' => $k, "title" => $item]);
@@ -42,7 +48,7 @@ class FilterSeeder extends Seeder
             '100000+',
         ];
 
-        $group = FilterGroup::create(['title' => "Գին","position" => 6, "type" => "checkbox", "name" => "price"]);
+        $group = FilterGroup::create(['title' => "Գին","position" => 6, "type" => "checkbox", "name" => "price","cat" => FilterGroup::CAT_HALL]);
 
         foreach ($prices as $k => $item){
             $group->items()->create(['position' => $k, "title" => $item]);
@@ -58,7 +64,7 @@ class FilterSeeder extends Seeder
             "Պարահրապարակ",
         ];
 
-        $group = FilterGroup::create(['title' => "Լրացուցիչ","position" => 1, "type" => "checkbox", "name" => "custom"]);
+        $group = FilterGroup::create(['title' => "Լրացուցիչ","position" => 1, "type" => "checkbox", "name" => "custom","cat" => FilterGroup::CAT_HALL]);
 
         foreach ($custom as $k => $item) {
             $group->items()->create(['position' => $k, "title" => $item]);
@@ -73,7 +79,13 @@ class FilterSeeder extends Seeder
             "Վիլլաներ",
         ];
 
-        $group = FilterGroup::create(['title' => "Տիպ","position" => 2, "type" => "select", "name" => "type"]);
+        $group = FilterGroup::create(['title' => "Տիպ","position" => 2, "type" => "select", "name" => "type","cat" => FilterGroup::CAT_HALL]);
+
+        foreach ($types as $k => $item){
+            $group->items()->create(['position' => $k, "title" => $item]);
+        }
+
+        $group = FilterGroup::create(['title' => "Տիպ","position" => 2, "type" => "select", "name" => "type","cat" => FilterGroup::CAT_SERVICE]);
 
         foreach ($types as $k => $item){
             $group->items()->create(['position' => $k, "title" => $item]);

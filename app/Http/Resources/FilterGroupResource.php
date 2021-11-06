@@ -20,6 +20,7 @@ class FilterGroupResource extends JsonResource
             'position' => $this->position,
             'type' => $this->type,
             'name' => $this->name,
+            'cat' => $this->cat,
             'items' => FilterResource::make($this->items)
         ];
     }

@@ -27,6 +27,7 @@ class FilterGroupUpdateRequest extends ApiRequest
         return [
             "position" => "numeric",
             "type" => [Rule::in(FilterGroup::TYPES)],
+            "cat"  => [Rule::in(FilterGroup::CATS)]
         ];
     }
 }
